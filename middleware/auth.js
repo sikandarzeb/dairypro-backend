@@ -1,6 +1,4 @@
-// ============================================================
 // middleware/auth.js — Verify JWT on protected routes
-// ============================================================
 const jwt = require('jsonwebtoken');
 
 module.exports = (req, res, next) => {
