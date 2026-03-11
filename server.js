@@ -9,9 +9,13 @@ const morgan  = require('morgan');
 const app = express();
 
 // ── Middleware ───────────────────────────────────────────────
+// app.use(cors({
+//   origin: '*',
+//   credentials: false
+// }));
 app.use(cors({
-  origin: '*',
-  credentials: false
+  origin: ['https://dairypro.netlify.app', 'http://localhost:5500'],
+  credentials: true
 }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
