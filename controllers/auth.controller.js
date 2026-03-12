@@ -87,10 +87,14 @@ exports.login = async (req, res) => {
       token,
       user: { id: user.id, farm_name: user.farm_name, email: user.email, role: user.role }
     });
+  // } catch (err) {
+  //   console.error(err);
+  //   return res.status(500).json({ success: false, message: 'Server error during login.' });
+  // }
   } catch (err) {
-    console.error(err);
-    return res.status(500).json({ success: false, message: 'Server error during login.' });
-  }
+    console.error('LOGIN ERROR:', err.message);
+    return res.status(500).json({ success: false, message: err.message });
+}
 };
 
 // ── GET /api/auth/me ─────────────────────────────────────────
