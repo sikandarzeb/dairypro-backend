@@ -9,7 +9,8 @@ module.exports = (req, res, next) => {
 
   const token = header.split(' ')[1];
   try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    // const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const decoded = jwt.verify(token, (process.env.JWT_SECRET || 'dairypro_fallback_secret_key_2026'))
     req.user = decoded;   // { id, email, farm_name, role }
     next();
   } catch (err) {

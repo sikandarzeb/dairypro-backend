@@ -35,11 +35,16 @@ exports.register = async (req, res) => {
     );
 
     // Generate token
+    // const token = jwt.sign(
+    //   { id: result.insertId, email, farm_name, role },
+    //   process.env.JWT_SECRET,
+    //   { expiresIn: process.env.JWT_EXPIRES_IN || '7d' }
+    // );
     const token = jwt.sign(
-      { id: result.insertId, email, farm_name, role },
-      process.env.JWT_SECRET,
-      { expiresIn: process.env.JWT_EXPIRES_IN || '7d' }
-    );
+  { id: result.insertId, email, farm_name, role },
+  (process.env.JWT_SECRET || 'dairypro_fallback_secret_key_2026'),
+  { expiresIn: process.env.JWT_EXPIRES_IN || '7d' }
+);
 
     return res.status(201).json({
       success: true,
@@ -75,11 +80,16 @@ exports.login = async (req, res) => {
     }
 
     // Generate token
-    const token = jwt.sign(
-      { id: user.id, email: user.email, farm_name: user.farm_name, role: user.role },
-      process.env.JWT_SECRET,
-      { expiresIn: process.env.JWT_EXPIRES_IN || '7d' }
-    );
+    // const token = jwt.sign(
+    //   { id: user.id, email: user.email, farm_name: user.farm_name, role: user.role },
+    //   process.env.JWT_SECRET,
+    //   { expiresIn: process.env.JWT_EXPIRES_IN || '7d' }
+    // );
+   const token = jwt.sign(
+  { id: user.id, email: user.email, farm_name: user.farm_name, role: user.role },
+  (process.env.JWT_SECRET || 'dairypro_fallback_secret_key_2026'),
+  { expiresIn: process.env.JWT_EXPIRES_IN || '7d' }
+);
 
     return res.json({
       success: true,
